@@ -17,7 +17,8 @@ class App extends Component{
 componentDidMount(){
     fetch('https://jsonplaceholder.typicode.com/users').
     then(response => response.json())
-    .then(user => {this.setState({ robot: user })});
+    .then(user => {this.setState({ robot: user })
+    });
 }
 
 onSearchChange = (event) => {
@@ -26,10 +27,11 @@ onSearchChange = (event) => {
 }
 
 render(){
-        const filterrobot = this.state.robot.filter(robot => {
-        return robot.name.toLowerCase().includes(this.state.searchfield.toLowerCase());
+        const {robot, searchfield} = this.state;
+        const filterrobot = robot.filter(robot => {
+        return robot.name.toLowerCase().includes(searchfield.toLowerCase());
     })
-    if (this.state.robot.length === 0){
+    if (robot.length === 0){
         return <h1> Loading </h1>
     }else {
     return(
